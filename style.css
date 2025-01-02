@@ -219,7 +219,7 @@ body {
 #game-content-container {
 	display: flex;
 	max-width: 740px;
-	height: 100vh;
+	min-height: 100vh;
 	flex-direction: column;
 	justify-content: center;
 	padding-top: 2vh;
