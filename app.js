@@ -1,6 +1,8 @@
 const pokeAPIBaseUrlForKoreanName = 'https://pokeapi.co/api/v2/pokemon-species';
 const pokeAPIBaseUrlForMoreInformation = 'https://pokeapi.co/api/v2/pokemon';
 const modalElements = document.querySelectorAll('.modal');
+const gameLoadingModal = document.querySelector('.game-loading__modal');
+const gameLoadingModalLoadingStatusBarElement = document.querySelector('.modal__game-loading__status-bar');
 const gameStartModal = document.querySelector('.game-start__modal');
 const gameStopModal = document.querySelector('.game-stop__modal');
 const gameResetModal = document.querySelector('.game-reset__modal');
@@ -37,6 +39,14 @@ const colors = {
 const modalToggler = (typeOfModal, openOrClose) => {
 	if (typeOfModal === 'start-game' && openOrClose === 'close') {
 		gameStartModal.classList.add('modal--closed');
+	} else if (typeOfModal === 'loading-game' && openOrClose === 'open') {
+		gameLoadingModal.classList.remove('modal--closed');
+		gameLoadingModalLoadingStatusBarElement.classList.add('active');
+		setTimeout(() => {
+			gameLoadingModalLoadingStatusBarElement.classList.remove('active');
+		}, 5000);
+	} else if (typeOfModal === 'loading-game' && openOrClose === 'close') {
+		gameLoadingModal.classList.add('modal--closed');
 	} else if (typeOfModal === 'stop-game' && openOrClose === 'open') {
 		gameStopModal.classList.remove('modal--closed');
 	} else if (typeOfModal === 'stop-game' && openOrClose === 'close') {
@@ -188,8 +198,13 @@ const displayHowManyMatched = () => {
 
 gameStartButton.addEventListener('click', () => {
 	modalToggler('start-game', 'close');
-	startMusic();
-	startGame();
+	modalToggler('loading-game', 'open');
+	preparePokemonCardElements();
+	setTimeout(() => {
+		modalToggler('loading-game', 'close');
+		startMusic();
+		startGame();
+	}, 5000);
 });
 
 gameStopButton.addEventListener('click', () => {
@@ -208,8 +223,11 @@ gameResetButtons.forEach((button) => {
 				modalElement.classList.add('modal--closed');
 			}
 		});
-		startGame();
+
+		modalToggler('loading-game', 'open');
+		setTimeout(() => {
+			modalToggler('loading-game', 'close');
+			startGame();
+		}, 5000);
 	});
 });
-
-preparePokemonCardElements();
