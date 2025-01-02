@@ -1,0 +1,373 @@
+/* Start of reset css */
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+	box-sizing: border-box;
+}
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol,
+ul {
+	list-style: none;
+}
+blockquote,
+q {
+	quotes: none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+/* End of reset css */
+
+@font-face {
+	font-family: DungGeunMo;
+	src: url('DungGeunMo.ttf');
+}
+
+body {
+	font-family: DungGeunMo, 'Sans Serif';
+	min-width: 850px;
+	color: #373737;
+	margin: 0;
+}
+
+#root-content-container {
+	position: relative;
+	width: 100%;
+	height: 100%;
+}
+
+.modal {
+	display: flex;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 30px;
+	z-index: 10;
+}
+
+.modal.modal--closed {
+	display: none;
+}
+
+.game-start__modal {
+	background-color: #f8ec99;
+}
+
+.game-stop__modal {
+	background-color: #90ffee;
+}
+
+.game-reset__modal {
+	background-color: #ffb81e;
+}
+
+.modal__game__title {
+	position: relative;
+	font-size: 100px;
+}
+
+.modal__game__result {
+	font-size: 85px;
+}
+
+.modal__game__how-many-matched {
+	font-size: 60px;
+}
+
+.modal__game__how-long-passed {
+	font-size: 60px;
+}
+
+.modal button {
+	border: none;
+	font-size: 45px;
+	font-family: inherit;
+	padding: 10px;
+	border: 3px solid black;
+	border-radius: 20px;
+	cursor: pointer;
+	transition: all 0.25s ease-in-out;
+}
+
+.modal button:hover {
+	transform: scale(1.05);
+}
+
+.game-start__modal .game-start__button {
+	background-color: #c6b8e3;
+}
+
+.game-stop__modal .game-reset__button {
+	background-color: #fff570;
+}
+
+.game-reset__modal .game-reset__button {
+	background-color: #c5f100;
+}
+
+#game-content-container {
+	display: flex;
+	max-width: 740px;
+	height: 100vh;
+	flex-direction: column;
+	justify-content: center;
+	padding-top: 2vh;
+	padding-bottom: 2vh;
+	margin: 0 auto;
+}
+
+header {
+	display: grid;
+	grid-template-rows: 1fr 0.3fr;
+	gap: 10px;
+	padding: 0 20px;
+}
+
+header .game-stop__button {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-family: inherit;
+	font-size: 30px;
+	background-color: unset;
+	border: none;
+	border: 3px solid black;
+	border-radius: 5px;
+	padding: 5px;
+	cursor: pointer;
+	transition: all 0.5s;
+}
+
+header .game-stop__button:hover {
+	transform: scale(1.05);
+}
+
+.header__upper {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+h2 {
+	font-size: 50px;
+}
+
+.header__bottom {
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+}
+
+.passed-time {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+}
+
+.passed-time__description {
+	font-size: 25px;
+}
+
+.passed-time__time {
+	font-size: 35px;
+}
+
+.passed-time__second {
+	font-size: 25px;
+}
+
+.reset-game-button {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-family: inherit;
+	font-size: 30px;
+	background-color: unset;
+	border: none;
+	border: 3px solid black;
+	border-radius: 5px;
+	padding: 5px;
+	cursor: pointer;
+}
+
+#game-board {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	grid-template-rows: repeat(4, 1fr);
+	gap: 10px;
+	padding: 20px;
+}
+
+.card {
+	position: relative;
+	aspect-ratio: 1 / 1;
+	box-shadow: 0 3px 10px rgba(200, 200, 200, 0.9);
+	border-radius: 10px;
+	font-family: inherit;
+	overflow: hidden;
+	padding: 0;
+	background-color: unset;
+	border: none;
+	transform-style: preserve-3d;
+	cursor: pointer;
+}
+
+.card__front,
+.card__back {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	backface-visibility: hidden;
+	transition: transform 0.5s;
+}
+
+.card__front {
+	background-image: url('pokeball.png');
+	background-position: center;
+	background-repeat: no-repeat;
+	background-color: #000;
+}
+
+.card__back {
+	display: grid;
+	grid-template-rows: 5fr 1fr;
+	grid-template-columns: 1fr;
+	justify-content: space-between;
+	align-items: center;
+	padding: 5px;
+}
+
+.card__back__image {
+	display: block;
+	height: 100%;
+	margin: 0 auto;
+}
+
+.card__back__name {
+	display: flex;
+	height: 100%;
+	justify-content: center;
+	align-items: center;
+	font-size: 20px;
+}
+
+.rotated {
+	transform: rotateY(180deg);
+}
+
+.matched {
+	cursor: auto;
+}

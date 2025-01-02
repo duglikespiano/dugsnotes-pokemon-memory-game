@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link href="style.css" rel="stylesheet" />
+		<script src="app.js" defer></script>
+		<title>포켓몬 기억게임!</title>
+	</head>
+	<body>
+		<div id="root-content-container">
+			<div class="modal game-start__modal">
+				<h1 class="modal__game__title">포켓몬 기억게임!</h1>
+				<button class="game-start__button">게임시작하기</button>
+			</div>
+			<div class="modal game-stop__modal modal--closed">
+				<p class="modal__game__result">게임종료!</p>
+				<p class="modal__game__how-many-matched">
+					<span class="how-many-matched__total">8</span><span class="how-many-matched__text">개 중 </span
+					><span class="how-many-matched__score"></span><span class="how-many-matched__text">개 성공!</span>
+				</p>
+				<p class="modal__game__how-long-passed">
+					<span class="how-long-passed__text">소요시간 : </span><span class="how-long-passed__second"></span
+					><span class="how-long-passed__text">초</span>
+				</p>
+				<button class="game-reset__button">게임재시작하기</button>
+			</div>
+			<div class="modal game-reset__modal modal--closed">
+				<p class="modal__game__result">성공!</p>
+				<p class="modal__game__how-long-passed">
+					<span class="how-long-passed__text1">소요시간 : </span><span class="how-long-passed__second"></span
+					><span class="how-long-passed__text2">초</span>
+				</p>
+				<button class="game-reset__button">게임재시작하기</button>
+			</div>
+			<div id="game-content-container">
+				<header>
+					<div class="header__upper">
+						<h2>포켓몬 기억게임!</h2>
+						<button class="game-stop__button">종료하기</button>
+					</div>
+					<div class="header__bottom">
+						<p class="passed-time">
+							<span class="passed-time__description">경과한 시간</span>
+							<span class="passed-time__time">0</span>
+							<span class="passed-time__seconds">초</span>
+						</p>
+						<audio class="bgm" src="bgm.mp3" loop></audio>
+					</div>
+				</header>
+				<div id="game-board"></div>
+			</div>
+		</div>
+	</body>
+</html>
