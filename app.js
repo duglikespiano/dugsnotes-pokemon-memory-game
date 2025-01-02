@@ -14,7 +14,8 @@ let isSelectPaused = false;
 let timeUpdateInterval;
 let passedTime = 0;
 let firstPick;
-let matches = 0;
+let currentScore = 0;
+const totalScore = 8;
 
 const colors = {
 	fire: '#FDDFDF',
@@ -94,10 +95,9 @@ const preparePokemonCardElements = async () => {
 
 const resetVariables = () => {
 	gameBoard.innerHTML = '';
-	preparePokemonCardElements();
 	isSelectPaused = true;
 	firstPick = null;
-	matches = 0;
+	currentScore = 0;
 };
 
 const startMusic = () => {
@@ -118,11 +118,6 @@ const startGame = () => {
 const stopGame = () => {
 	clearInterval(timeUpdateInterval);
 	passedTimeElement.innerText = 0;
-};
-
-const resetGame = () => {
-	resetVariables();
-	startGame();
 };
 
 const clickCard = (event) => {
@@ -150,14 +145,16 @@ const clickCard = (event) => {
 				isSelectPaused = false;
 			}, 750);
 		} else {
-			matches++;
+			currentScore++;
 			firstPick.classList.add('matched');
 			pokemonCard.classList.add('matched');
-			if (matches === 8000) {
+			if (currentScore === totalScore) {
 				setTimeout(() => {
 					displayHowLongPassed('reset-game');
 					modalToggler('reset-game', 'open');
 					stopGame();
+					resetVariables();
+					preparePokemonCardElements();
 				}, 1000);
 			}
 			firstPick = null;
@@ -186,7 +183,7 @@ const displayHowLongPassed = (whichModal) => {
 };
 
 const displayHowManyMatched = () => {
-	gameStopModal.querySelector('.how-many-matched__score').innerText = matches;
+	gameStopModal.querySelector('.how-many-matched__score').innerText = currentScore;
 };
 
 gameStartButton.addEventListener('click', () => {
@@ -200,6 +197,8 @@ gameStopButton.addEventListener('click', () => {
 	displayHowManyMatched();
 	modalToggler('stop-game', 'open');
 	stopGame();
+	resetVariables();
+	preparePokemonCardElements();
 });
 
 gameResetButtons.forEach((button) => {
@@ -209,7 +208,7 @@ gameResetButtons.forEach((button) => {
 				modalElement.classList.add('modal--closed');
 			}
 		});
-		resetGame();
+		startGame();
 	});
 });
 
